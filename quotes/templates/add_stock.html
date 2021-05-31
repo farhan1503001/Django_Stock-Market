@@ -26,19 +26,20 @@
       </tr>
   </thead>
   <tbody>
-      {% for data in dataset %} 
+      {% for data,stock in foo %} 
          <tr>
              <td>{{data.0.longName}}</td>
              <td>{{data.0.regularMarketPrice}}</td>
              <td>{{data.0.regularMarketPreviousClose}}</td>
              <td>{{data.0.regularMarketVolume}}</td>
+             <td>{{data.0.fiftyTwoWeekLow}}</td>
+             <td>{{data.0.fiftyTwoWeekHigh}}</td>
+             <td>{{data.0.fiftyTwoWeekHighChangePercent}}%</td>
+             <td><a href="{% url 'delete' stock.id %}">Delete</a></td>
          </tr>
       {% endfor %}
   </tbody>
 </table>
-{% for stock in stock_name %} 
-      <p>{{stock.id}} | {{stock}} <a href="{% url 'delete' stock.id %}">Delete</a></p> 
-{% endfor %}
 
 
 

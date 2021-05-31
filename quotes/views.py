@@ -50,7 +50,7 @@ def add_stock(request):
             except Exception as e:
                 api='ERROR'
 
-        return render(request,'add_stock.html',{'stock_name':ticker_name,'dataset':dataset})
+        return render(request,'add_stock.html',{'stock_name':ticker_name,'dataset':dataset,'foo':zip(dataset,ticker_name)})
 
 def delete(request,id):
     item=Stock.objects.get(pk=id)

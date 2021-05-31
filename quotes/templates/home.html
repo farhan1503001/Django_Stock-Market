@@ -8,14 +8,18 @@
    {% else %} 
        <br/>
        <h1>{{data.0.longName}}</h1>
-       Price : {{data.0.regularMarketPrice}} &#36<br/>
-       Previous Market Price: {{data.0.regularMarketPreviousClose}} &#36<br/>
-       Market Opening Price: {{data.0.regularMarketOpen}} &#36<br/>
-       Average Price in Fifty Days: {{data.0.fiftyDayAverage}} &#36<br/>
-       Lowest Price in 52 Weeks: {{data.0.fiftyTwoWeekLow}} &#36<br/>
-       Highest Price in 52 Weeks: {{data.0.fiftyTwoWeekHigh}} &#36<br/>
-       Percentage Price Change in 52 Weeks: {{data.0.fiftyTwoWeekHighChangePercent}}%<br/>
-       Market Volume : {{data.0.regularMarketVolume}} &#36 <br/>
+
+       <ul class="list-group">
+        <li class="list-group-item list-group-item-dark">Price : {{data.0.regularMarketPrice}} &#36</li>
+      
+        <li class="list-group-item list-group-item-primary">Previous Market Price: {{data.0.regularMarketPreviousClose}} &#36</li>
+        <li class="list-group-item list-group-item-secondary">Market Opening Price: {{data.0.regularMarketOpen}} &#36</li>
+        <li class="list-group-item list-group-item-success">Average Price in Fifty Days: {{data.0.fiftyDayAverage}} &#36</li>
+        <li class="list-group-item list-group-item-danger">Lowest Price in 52 Weeks: {{data.0.fiftyTwoWeekLow}} &#36</li>
+        <li class="list-group-item list-group-item-warning">Highest Price in 52 Weeks: {{data.0.fiftyTwoWeekHigh}} &#36</li>
+        <li class="list-group-item list-group-item-info">Percentage Price Change in 52 Weeks: {{data.0.fiftyTwoWeekHighChangePercent}}%</li>
+        <li class="list-group-item list-group-item-light">Market Volume : {{data.0.regularMarketVolume}} &#36</li>
+      </ul>
 
     {% endif %} 
 {% endif %}
