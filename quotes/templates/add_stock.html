@@ -3,4 +3,15 @@
 {% block title %}Stock Market|About{% endblock %}
 {% block content %}
 <h1>Add Stock</h1>
+<br/>
+<form class="d-flex" action="{% url 'add_stock' %}" method="POST">
+    {% csrf_token %}
+    <input class="form-control me-2" type="search" placeholder="Enter Ticker" name='adder' aria-label="Search">
+    <button class="btn btn-outline-info" type="Add Ticker">Search</button>
+  </form>
+<h1>Stock List</h1>
+<br/>
+{% for stock in stock_name %} 
+      <p>{{stock}}</p> 
+{% endfor %}
 {% endblock %}
