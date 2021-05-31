@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Stock
+from .forms import Stock_form
+from django.contrib import messages
 # Create your views here.
 
 def home(request):
@@ -28,5 +30,30 @@ def home(request):
 def about(request):
     return render(request,'about.html',{})
 def add_stock(request):
-    ticker_name=Stock.objects.all()
-    return render(request,'add_stock.html',{'stock_name':ticker_name})
+    import requests
+    import json
+    if request.method=='POST':
+        form=Stock_form(request.POST or None)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Ticker Added Successfully!')
+            return redirect('add_stock')
+    else:
+        ticker_name=Stock.objects.all()
+        dataset=list()
+        for ticker in ticker_name:
+            url='https://mboum.com/api/v1/qu/quote/?symbol='+str(ticker)+'&apikey=6AtfJj3itkxGv1VKfZSNZUA8DGcxiWj4ijXOmaRY0dC5wiBDPJctHSKv3sae'
+            response=requests.get(url)
+            try:
+                api=json.loads(response.content)
+                dataset.append(api)
+            except Exception as e:
+                api='ERROR'
+
+        return render(request,'add_stock.html',{'stock_name':ticker_name,'dataset':dataset})
+
+def delete(request,id):
+    item=Stock.objects.get(pk=id)
+    item.delete()
+    messages.success(request,'Ticker Deleted Successfully')
+    return redirect('add_stock')
