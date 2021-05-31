@@ -4,14 +4,16 @@ from django.shortcuts import render
 
 def home(request):
     import requests
-    import json
-    #https://cloud.iexapis.com/stable/stock/IBM/financials?token=pk_45759c428bf9456ea345b2fd2fa809eb&period=annual 
-    #API KEY: pk_45759c428bf9456ea345b2fd2fa809eb 
-    response=requests.get('')
+    import json 
+    #API KEY: 6AtfJj3itkxGv1VKfZSNZUA8DGcxiWj4ijXOmaRY0dC5wiBDPJctHSKv3sae
+    url='https://mboum.com/api/v1/qu/quote/?symbol=AAPL,F&apikey=6AtfJj3itkxGv1VKfZSNZUA8DGcxiWj4ijXOmaRY0dC5wiBDPJctHSKv3sae'
+    response=requests.get(url=url)
     if response:
         api=json.loads(response.content)
     else:
-        api='ERROR....'
+        api='ERROR'
     return render(request,'home.html',{'data':api})
 def about(request):
     return render(request,'about.html',{})
+def add_stock(request):
+    return render(request,'add_stock.html',{})

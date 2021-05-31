@@ -1,7 +1,24 @@
 {% extends 'base.html' %}
 
-{% block title %}Stock Market{% endblock %}
 
 {% block content %}
-{{data}}
+<br/>
+{% if data %} 
+   {% if data == "ERROR" %} 
+       There is error while parsing the json file from the api
+   {% else %} 
+       <br/>
+       <h1>{{data.0.longName}}</h1>
+       Price : {{data.0.regularMarketPrice}} &#36<br/>
+       Previous Market Price: {{data.0.regularMarketPreviousClose}} &#36<br/>
+       Market Opening Price: {{data.0.regularMarketOpen}} &#36<br/>
+       Average Price in Fifty Days: {{data.0.fiftyDayAverage}} &#36<br/>
+       Lowest Price in 52 Weeks: {{data.0.fiftyTwoWeekLow}} &#36<br/>
+       Highest Price in 52 Weeks: {{data.0.fiftyTwoWeekHigh}} &#36<br/>
+       Percentage Price Change in 52 Weeks: {{data.0.fiftyTwoWeekHighChangePercent}}%<br/>
+       Market Volume : {{data.0.regularMarketVolume}} &#36 <br/>
+
+    {% endif %} 
+{% endif %}
+
 {% endblock %}
